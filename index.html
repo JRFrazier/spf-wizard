@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SPF Wizard</title>
+    <link rel="icon" href="https://dnsmadeeasy.com/favicon.ico">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -44,13 +45,29 @@
                                         class="fal fa-question-circle"></i></a> be able to send email for this
                                 domain? </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="yes" />
+                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="v=spf1 mx" />
                                 <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
-                                    value="no" />
+                                    value="v=spf1" />
                                 <label class="form-check-label" for="disallowMXServers">No</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input__label">Should the current IP address of the domain<a href="#"
+                                    data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                    data-content="This is the IP address set in the A record for the domain."><i class="fal fa-question-circle"></i></a>
+                                be allowed to send email for this domain?</div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="IPAddress" id="allowIPAddress" value=" a" />
+                                <label class="form-check-label" for="allowIPAddress">Yes <span>(recommended)</span></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="IPAddress" id="disallowIPAddress"
+                                    value="" />
+                                <label class="form-check-label" for="disallowIPAddress">No</label>
                             </div>
                         </div>
 
@@ -61,28 +78,28 @@
                                 be able to send email for this domain? </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hostnames" id="disallowHostnames"
-                                    value="no" />
+                                    value="" />
                                 <label class="form-check-label" for="disallowHostnames">No <span>(recommended)</span></label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="hostnames" id="allowHostnames" value="yes" />
+                                <input class="form-check-input" type="radio" name="hostnames" id="allowHostnames" value=" ptr" />
                                 <label class="form-check-label" for="allowHostnames">Yes</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input__label">How strict should the servers be that handle the emails? </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="strict" id="strictFail" value="no" />
+                                <input class="form-check-input" type="radio" name="strict" id="strictFail" value=" -all" />
                                 <label class="form-check-label" for="strictFail">Fail <span>(Reject non-compliant
                                         requests)</span></label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="strict" id="strictSoftFail" value="yes" />
+                                <input class="form-check-input" type="radio" name="strict" id="strictSoftFail" value=" ~all" />
                                 <label class="form-check-label" for="strictSoftFail">Soft Fail <span>(Accept, but not
                                         mark non-compliant requests)</span></label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="strict" id="strictNeutral" value="yes" />
+                                <input class="form-check-input" type="radio" name="strict" id="strictNeutral" value=" ?all" />
                                 <label class="form-check-label" for="strictNeutral">Neutral <span>(Mail will probably
                                         accepted)</span></label>
                             </div>

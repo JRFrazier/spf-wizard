@@ -4,22 +4,21 @@ const form = document.getElementsByClassName("form__spf-wizard");
 
 //Add IP Address
 $(document).ready(() => {
-  
-  //Auto insert domain name into #domainName
-  let domainNamePlaceHolder = "your domain,";
-  let domainName = "";
-  $("#domain").keyup(x => {
-    if (x.originalEvent.key === "Backspace" && $("#domain").val() === "") {
-      $("#domainName").text(domainNamePlaceHolder);
-    } else {
-      domainName = $("#domain").val();
-      $("#domainName").text(domainName);
-    }
-  });
+    //Auto insert domain name into #domainName
+    let domainNamePlaceHolder = "your domain,";
+    let domainName = "";
+    $("#domain").keyup(x => {
+        if (x.originalEvent.key === "Backspace" && $("#domain").val() === "") {
+            $("#domainName").text(domainNamePlaceHolder);
+        } else {
+            domainName = $("#domain").val();
+            $("#domainName").text(domainName);
+        }
+    });
 
-  $("#domainName").text(domainNamePlaceHolder);
+    $("#domainName").text(domainNamePlaceHolder);
 
-  /*let foo = $("#answer").html();
+    /*let foo = $("#answer").html();
   const main = ["@ IN TXT", ' "v=spf1', '"'];
     $("#relayIPAddress").keypress(x => {
     main.splice(2, 0, "test");
@@ -42,25 +41,38 @@ $(document).ready(() => {
         $("#answer")
             .text(yourDomain)
             .append(recordInfo);
+        //i need this to also run the getAnswers function when yourDomain value changes
     });
 
-    $("#answer").text(yourDomain);
+    //    $("#answer").text(yourDomain);
 
-});
+    //MX Servers, IP Address, Hostnames, and Strict inputs
+    //reruns on every input click no long duplicates answers in answer box
 
-//MX Servers
-$(document).ready(() => {
-    let MXServers = " v=spf1 mx";
-    let disallowMXServers = " v=spf1";
-    //Yes
-    $("input[name=MXServers]").on("change", function() {
-        if ($(this).val() == "yes" && $(this).is(":checked")) {
-            $("#answer").append(MXServers);
-        } else if ($(this).val() == "no" && $(this).is(":checked")) {
-            $("#answer").append(disallowMXServers);
-        }
+    $(
+        "input[name=MXServers], input[name=IPAddress], input[name=hostnames], input[name=strict]"
+    ).on("click", function getAnswers() {
+        let MXServers = $("input[name=MXServers]:checked").val();
+        let IPAddress = $("input[name=IPAddress]:checked").val();
+        let Hostnames = $("input[name=hostnames]:checked").val();
+        let strict = $("input[name=strict]:checked").val();
+
+        $("#answer")
+            .text(yourDomain)
+            .append(
+                recordInfo,
+                " ",
+                '"',
+                MXServers,
+                IPAddress,
+                Hostnames,
+                strict,
+                '"'
+            );
     });
 });
+
+//IP Address
 
 // const answerText = domain.value + "" + 'IN TXT "v=spf1"';
 
