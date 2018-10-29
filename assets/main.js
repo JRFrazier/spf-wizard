@@ -16,7 +16,7 @@ $(document).ready(() => {
         }
     });
 
-    $("#domainName").text(domainNamePlaceHolder);
+    // $("#domainName").text(domainNamePlaceHolder); //is this necessary?
 
     /*let foo = $("#answer").html();
   const main = ["@ IN TXT", ' "v=spf1', '"'];
@@ -57,6 +57,8 @@ $(document).ready(() => {
         let Hostnames = $("input[name=hostnames]:checked").val();
         let strict = $("input[name=strict]:checked").val();
 
+        // $(printToAnswer);
+
         $("#answer")
             .text(yourDomain)
             .append(
@@ -67,9 +69,46 @@ $(document).ready(() => {
                 IPAddress,
                 Hostnames,
                 strict,
+                // relayIPAddressOutput,
                 '"'
             );
     });
+
+    //auto insert IP relay in answer box
+    // $("#relayIPAddress").keyup(x => {
+    //     var recordInfo = "ip4:";
+    //     var relayIPAddress = $("#relayIPAddress").val();
+    //     if (
+    //         x.originalEvent.key === "Backspace" &&
+    //         relayIPAddress.length === 1
+    //     ) {
+    //         $("#relayIPAddress").attr(
+    //             "placeholder",
+    //             "IP address(es) in CIDR format"
+    //         );
+    //     } else {
+    //         recordInfo.concat(relayIPAddress);
+    //     }
+    //     $(printToAnswer);
+    //     //need to figure out how to get this function to fire on key up to append the value to the end of #domain but inside the quotes...
+    // });
+
+    // function printToAnswer() {
+    //return form inputs
+    // $("#answer")
+    //     .text(yourDomain)
+    //     .append(
+    //         recordInfo,
+    //         " ",
+    //         '"',
+    //         MXServers,
+    //         IPAddress,
+    //         Hostnames,
+    //         strict,
+    //         relayIPAddressOutput,
+    //         '"'
+    //     );
+    // }
 });
 
 //IP Address
