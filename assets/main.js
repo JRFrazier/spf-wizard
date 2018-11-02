@@ -65,17 +65,17 @@ $(document).ready(() => {
   //this will add the IP address
   let authIpAddress = "";
   const ipArray = [];
-  let blank = "ip4:";
+  let blank = "";
   $("#relayIPAddress").keyup(x => {
     const IpAddr = $("#relayIPAddress").val();
-
-    if (x.originalEvent.code === "Space" && blank.length < 12) {
-      alert("Please Stop");
+    if (event.keyCode === 32 && blank.length < 12) {
+      event.preventDefault();
     } else {
       if (blank === "") {
-        blank.concat("ip4:");
+        blank = blank.concat("ip4:");
       } else if (blank.length < 12) {
-        console.log("ok really?");
+        blank = blank.concat("1");
+        console.log("ok really?", blank.length);
       }
     }
 
